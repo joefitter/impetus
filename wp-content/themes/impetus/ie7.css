@@ -1,0 +1,39 @@
+a.view-project {
+	width: 378px !important;
+}
+
+div.project-teaser.left,
+div.project-teaser.right {
+	width:440px;
+}
+
+a.view-project.half {
+	width:151px !important;
+}
+
+div.teaser-button {
+	width:440px !important;
+}
+
+.tab-bottom-left {
+	width:480px !important;
+}
+.tab-bottom-right {
+	width:440px !important;
+}
+
+div#header-image {
+	overflow:hidden;
+}
+
+div#image-inner {
+	position:static;
+	width:100%;
+margin:0;
+}
+
+div#image-inner img {
+	margin:0;
+position:static;
+width:100%;
+}
