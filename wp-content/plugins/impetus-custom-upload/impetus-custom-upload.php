@@ -23,7 +23,16 @@ function wp_custom_attachment($post){
 
 	if($uploadedFile){
 		echo '<div style="border-bottom:1px solid #dfdfdf;"><p class="description">Current application pack:</p>
-		<ul><li>' . $uploadedFile["url"] . '</li></ul></div>';
+		<ul><li id="uploaded-file">' . $uploadedFile["url"] . '</li></ul><a href="javascript:void(0)" id="remove-application" onclick="removeAttachment()">Remove</a>
+		<input type="hidden" val="" id="check_removed" name="check_removed" /><br /></div>
+		<script>
+			function removeAttachment(){
+				var ele = document.getElementById("check_removed");
+				ele.value = "removed";
+				var file = document.getElementById("uploaded-file");
+				file.firstChild.nodeValue = "";
+			}		
+		</script>';
 	}
 
 	echo '<div style="border-top: 1px solid #ffffff;"><p class="description">Upload your .zip application pack here.</p>
@@ -47,6 +56,10 @@ function save_custom_file_upload($id) {
 		if(!current_user_can( "edit_post", $id )){
 			return $id;
 		}
+	}
+
+	if($_POST["check_removed"] === "removed"){
+		update_post_meta( $id, "wp_custom_attachment", null);
 	}
 
 	if(!empty($_FILES["wp_custom_attachment"]["name"])){

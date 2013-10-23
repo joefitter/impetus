@@ -127,9 +127,9 @@ div.wpcf7 {
 	font-size: 0.8em;
 }
 
-input.wpcf7-submit, .btn-large {
+input.wpcf7-submit, .btn-large, #submit {
 	background-color:#ec7c27;
-	border-color:#ec7c27;
+	border:none;
 	color:#fff;
 	font-weight: 600 !important;
 	margin-top:0;

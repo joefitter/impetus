@@ -9,7 +9,7 @@ Author URI: http://joefitter.com
 */
 
 function get_team_members_get_posts_by_type($type, $order, $orderby, $filter = "", $value = ""){
-	$args = array("post_type" => $type, "order_by" => $orderby, "order" => $order, 'posts_per_page' => '-1', $filter => $value);
+	$args = array("post_type" => $type, "orderby" => $orderby, "order" => $order, 'posts_per_page' => '-1', $filter => $value);
 	return new WP_Query($args);
 }
 
@@ -17,7 +17,7 @@ function get_team_members($atts, $content){
 	extract(shortcode_atts( array(
 		'type' => 'team-member',
 		'order' => 'ASC',
-		'orderby' => 'date'
+		'orderby' => 'title'
 	), $atts ));
 	$posts = get_team_members_get_posts_by_type($type, $order, $orderby);
 	$return = "";

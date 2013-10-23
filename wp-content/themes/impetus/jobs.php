@@ -13,7 +13,7 @@ get_header(); ?>
 	</div>
 </div>
 <div class="green-line"></div>
-<div class="wrapper">
+<div class="wrapper" id="content">
 	<a href="#" class="show-jobs">View Current Vacancies</a>
 	<div class="content-sidebar" id="jobs-sidebar">
 		<h2>Current Vacancies</h2>

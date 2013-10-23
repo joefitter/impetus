@@ -58,6 +58,30 @@ function create_story_taxonomies(){
 	);
 
 	register_taxonomy( 'story_project', array('story'), $args );
+
+	$labels = array(
+		'name' 				=> _x('Tags', 'taxonomy general name'),
+		'singular_name' 	=> _x('Tag', 'taxonomy singular name'),
+		'search_items' 		=> __('Search Tags'),
+		'add_items'			=> __('All Tags'),
+		'parent_item'		=> __('Parent Tag'),
+		'parent_item_colon'	=> __('Parent Tag:'),
+		'edit_item'			=> __('Edit Tag'),
+		'update_item'		=> __('Update Tag'),
+		'add_new_item'		=> __('Add New Tag'),
+		'new_item_name'		=> __('New Project Tag'),
+		'menu_name'			=> __('Tag')
+	);
+
+	$args = array(
+		'hierarchical'		=> false,
+		'labels'			=> $labels,
+		'show_ui'			=> true,
+		'show_admin_column' => true,
+		'query_var'			=> true
+	);
+
+	register_taxonomy( 'story_tag', array('story'), $args );
 }
 
 function create_volunteer_taxonomies(){
@@ -261,20 +285,45 @@ function team_post_type() {
 	register_post_type( 'team-member', $args );	
 }
 
+if( class_exists( 'kdMultipleFeaturedImages' ) ) {
+
+        $args = array(
+                'id' => 'featured-image-2',
+                'post_type' => 'project',
+                'labels' => array(
+                    'name'      => 'Featured image 2',
+                    'set'       => 'Set featured image 2',
+                    'remove'    => 'Remove featured image 2',
+                    'use'       => 'Use as featured image 2',
+                )
+        );
+
+        new kdMultipleFeaturedImages( $args );
+}
+
 add_action( 'init', 'team_post_type' );
 
 function get_featured_post_by_cat($cat){
-	$args = array("post_type"=>"post", "order_by" => "rand", "posts_per_page" => "1", "tag" => "Featured", "category_name" => $cat);
+	$args = array("post_type"=>"post", "orderby" => "rand", "posts_per_page" => "1", "tag" => "Featured", "category_name" => $cat);
+	return new WP_Query($args);
+}
+
+function get_featured_story_by_project($project){
+	$args = array("post_type"=>"story", "orderby" =>"rand", "posts_per_page" => "1", "story_project"=>"Story " . $project, "story_tag" => "Featured");
 	return new WP_Query($args);
 }
 
 function get_posts_by_type($type, $order = "ASC", $filter = "", $value = "", $cat = ""){
-	$args = array("post_type" => $type, "order_by" => "date", "order" => $order, $filter => $value, "category_name" => $cat);
+	$args = array("post_type" => $type, "orderby" => "date", "order" => $order, $filter => $value, "category_name" => $cat);
 	return new WP_Query($args);
 }
 
+function get_tag_cloud_text($count){
+	return $count . " posts.";
+}
+
 function get_tabs_by_page($page){
-	$args = array("post_type" => "tab", 'tab_page' => $page, 'order_by' => "date", "order" => "ASC");
+	$args = array("post_type" => "tab", 'tab_page' => $page, 'orderby' => "date", "order" => "ASC");
 	return new WP_Query($args);
 }
 
@@ -364,21 +413,21 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 function get_call_to_action_buttons($page){
 	switch ($page) {
-		case 'Get Help':
+		case 'Get Support':
 			$link1 = "Donate";
 			$text1 = "Donate to";
 			$link2 = "Volunteer";
 			$text2 = "Volunteer for";
 			break;
 		case 'Donate':
-			$link1 = "Get Help";
-			$text1 = "Get help with";
+			$link1 = "Get Support";
+			$text1 = "Get support with";
 			$link2 = "Volunteer";
 			$text2 = "Volunteer for";
 			break;
 		case 'Volunteer':
-			$link1 = "Get Help";
-			$text1 = "Get help with";
+			$link1 = "Get Support";
+			$text1 = "Get support with";
 			$link2 = "Donate";
 			$text2 = "Donate to";
 			break;

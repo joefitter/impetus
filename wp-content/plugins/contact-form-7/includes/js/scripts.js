@@ -182,7 +182,7 @@
 			Ladda.bind( "button", {callback: function(instance){
 				$("div.wpcf7 > form").submit();
 
-				$("#wpcf7-f190-p186-o1").on("finished", function(){
+				$("form").parent("div.wpcf7").on("finished", function(){
 					instance.stop();
 				});
 				

@@ -48,7 +48,7 @@ get_header(); ?>
 </div>
 <div class="grey-back">
 	<div class="wrapper" id="main">
-		<div id="content">
+		<div>
 			<ul class="tabs">
 				<?php $tabs = get_tabs_by_page(get_the_title() . " Project"); ?>
 				<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
@@ -60,7 +60,7 @@ get_header(); ?>
 		</div>
 	</div>
 </div>
-<div>
+<div id="content">
 	<div class="green-line"></div>
 	<div class="wrapper">
 		<div>
@@ -84,11 +84,11 @@ get_header(); ?>
 			<div class="clear"></div>
 		</div>
 	</div>
+	<?php $footer_posts = get_featured_post_by_cat(get_the_title());
+			if($footer_posts->have_posts()) : while($footer_posts->have_posts()) : $footer_posts->the_post(); ?>
 	<div class="tab-bottom">
 		<div class="wrapper">
 			<h3><img class="rss" src="<?php bloginfo("stylesheet_directory"); ?>/img/rss-alt.png" />Latest News about <?php the_title(); ?></h3>
-			<?php $footer_posts = get_featured_post_by_cat(get_the_title());
-			if($footer_posts->have_posts()) : while($footer_posts->have_posts()) : $footer_posts->the_post(); ?>
 				<div class="tab-bottom-left">
 				
 				<h6><?php the_title(); ?></h6>
@@ -106,7 +106,9 @@ get_header(); ?>
 				</a>
 			</div>
 			<div class="clear"></div>
-			<?php endwhile; endif; ?>
+			
 		</div>
 	</div>
-<?php get_footer();?>
+	<?php endwhile; endif; ?>
+</div>
+<?php get_footer(); ?>

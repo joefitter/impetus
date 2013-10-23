@@ -8,7 +8,7 @@ get_header(); ?>
 <div id="projects-top">
 	<div class="wrapper">
 		<h1 class="homepage-title orange"><?php echo get_subtitle(get_the_ID()); ?></h1>
-		<p class="projects-strapline grey">Reducing isolation • Securing access to statutory services • Enabling positive choices</p>
+		<p class="projects-strapline grey center">Reducing isolation • Securing access to statutory services • Enabling positive choices</p>
 	</div>
 </div>
 <div class="thin-grey"></div>
@@ -22,15 +22,24 @@ get_header(); ?>
 					<?php if($i > 1) { ?>
 					<div class="teaser-line"></div>
 					<?php } ?>
-					<div class="teaser-inner">
+					<div class="teaser-inner homepage">
 						<?php $project_id = $post->ID; ?>
 						<h3 class="teaser-title orange"><?php echo get_the_secondary_title($project_id); ?></h3>
 						<?php the_excerpt(); ?>
-						<?php $story = get_posts_by_type("story", "ASC", "story_project", "Story " . get_the_title());
+						<?php $story = get_featured_story_by_project(get_the_title());
 						if($story->have_posts()) : while($story->have_posts()) : $story->the_post(); ?>
-							<?php the_post_thumbnail("small");?>
+							<div class="story-teaser-wrapper">
+								<div class="fl">
+									<?php the_post_thumbnail(array(230, 153));?>
+								</div>
+								<div class="fl story-teaser">
+									<h4><?php the_title(); ?></h4>
+									<p><?php the_excerpt(); ?></p>
+									<a href="<?php the_permalink(); ?>">Read the story</a>
+								</div>
+								<div class="clear"></div>
+							</div>
 						<?php endwhile; endif; ?>
-						<?php   ?>
 						<div class="teaser-button">
 							<a class="view-project" href="<?php the_permalink($project_id); ?>">More about <?php echo get_the_title($project_id); ?><?php echo get_right_arrow_HTML(); ?></a>
 						</div>

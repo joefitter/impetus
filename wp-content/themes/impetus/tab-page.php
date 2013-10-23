@@ -9,7 +9,7 @@ get_header(); ?>
 
 <div class="grey-back">
 	<div id="main" class="wrapper">
-		<div id="content">
+		<div>
 			<h2><?php echo get_subtitle($page_id); ?></h2>
 			<ul class="tabs">
 				<?php $tabs = get_tabs_by_page(get_the_title()); ?>
@@ -25,7 +25,7 @@ get_header(); ?>
 <div style="overflow:hidden">
 	<div class="green-line"></div>
 	<div class="wrapper">
-		<div>
+		<div id="content">
 			<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
 			<div class="tabs-catch-all" data-tab="<?php echo $post->ID; ?>">
 				<h1 class="tab-title"><?php the_title(); ?>

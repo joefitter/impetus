@@ -25,6 +25,35 @@
 			tabUrl = selectedTab.attr("data-id"),
 			tabName = selectedTab.attr("data-name");
 		selectedTab.addClass("selected");
+		if(window.location.href.indexOf("get-support") !== -1){
+			$("input[name='subject']").val("Get Support - " + tabName);
+		} else if(window.location.href.indexOf("volunteer") !== -1){
+			$("input[name='subject']").val("Volunteer - " + tabName);
+		}
+		var email;
+		switch(tabName){
+			case "ASpire":
+				email = "aspire@bh-impetus.org";
+				break;
+			case "InterAct":
+				email = "interact@bh-impetus.org";
+				break;
+			case "Better Futures":
+				email = "betterfutures@bh-impetus.org";
+				break;
+			case "Neighbourhood Care Scheme":
+				email = "ncs@bh-impetus.org";
+				break;
+			default:
+				email = "info@bh-icas.org";
+				break;
+		}
+
+		if($("form.wpcf7-form input[name='to-address']").length ===0){
+			$("form.wpcf7-form").append('<input type="hidden" name="to-address" value="'+email+'" />');
+		} else {
+			$("form.wpcf7-form input[name='to-address']").val(email);
+		}
 
 		var $displayTab = $("div.tabs-catch-all[data-tab='" + tabId + "']");
 		$displayTab.show();
@@ -57,7 +86,7 @@
 			}
 			
 		});
-		lastTab = tabUrl
+		lastTab = tabUrl;
 	}
 
 	$(function(){
@@ -69,6 +98,4 @@
 			return false;
 		});
 	});
-})(jQuery)
-
-
+})(jQuery);

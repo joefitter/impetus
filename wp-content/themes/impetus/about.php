@@ -6,7 +6,7 @@
 get_header(); ?>
 <div class="grey-back">
 	<div class="wrapper" id="main">
-		<div id="content">
+		<div>
 			<h2><?php echo get_subtitle(get_the_ID()); ?></h2>
 			<ul class="tabs">
 				<?php $tabs = get_tabs_by_page(get_the_title()); ?>
@@ -19,7 +19,7 @@ get_header(); ?>
 		</div>
 	</div>
 </div>
-<div>
+<div id="content">
 	<div class="green-line"></div>
 	<div class="wrapper">
 		<div>
@@ -42,23 +42,24 @@ get_header(); ?>
 			<div class="clear"></div>
 		</div>
 	</div>
-	<div class="tab-bottom">
-		<div class="wrapper">
-			<div class="tab-bottom-left">
-				<h3>Want to speak to us directly?</h3>
-				<a href="<?php bloginfo("home"); ?>/contact" class="call-to-action no-change">Contact Us<?php echo get_right_arrow_HTML(); ?></a>
-				<a class="number orange bold" href="tel:01273775888">01273 775 888 <img class="phone-link" src="<?php bloginfo("stylesheet_directory");?>/img/phone-orange.png" /></a>
-				<div class="clear"></div>
-				
-			</div>
-			<div class="tab-bottom-right half">
-				<h3>Understand our projects</h3>
-				<a href="<?php echo get_permalink_from_page_name("Projects"); ?>" class="call-to-action no-change">
-					<span>Learn more about Impetus projects</span>
-					<?php echo get_right_arrow_HTML(); ?>
-				</a>
-			</div>
+</div>
+<div class="tab-bottom">
+	<div class="wrapper">
+		<div class="tab-bottom-left">
+			<h3>Want to speak to us directly?</h3>
+			<a href="<?php bloginfo("home"); ?>/contact" class="call-to-action no-change">Contact Us<?php echo get_right_arrow_HTML(); ?></a>
+			<a class="number orange bold" href="tel:01273775888">01273 775 888 <img class="phone-link" src="<?php bloginfo("stylesheet_directory");?>/img/phone-orange.png" /></a>
 			<div class="clear"></div>
+			
 		</div>
+		<div class="tab-bottom-right half">
+			<h3>Understand our projects</h3>
+			<a href="<?php echo get_permalink_from_page_name("Projects"); ?>" class="call-to-action no-change">
+				<span>Learn more about Impetus projects</span>
+				<?php echo get_right_arrow_HTML(); ?>
+			</a>
+		</div>
+		<div class="clear"></div>
 	</div>
+</div>
 <?php get_footer(); ?>

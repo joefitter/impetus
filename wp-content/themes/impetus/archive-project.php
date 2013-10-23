@@ -1,11 +1,5 @@
 <?php
 get_header(); ?>
-<div id="projects-top">
-	<div class="wrapper">
-		<h1 class="projects-title orange">Projects at Impetus</h1>
-		<p class="projects-strapline">We currently govern four main projects, which are seperately managed & financed.</p>
-	</div>
-</div>
 <div class="green-line"></div>
 <div class="wrapper" id="main">
 	<div id="content">

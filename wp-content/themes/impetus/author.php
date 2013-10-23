@@ -9,7 +9,7 @@ get_header(); ?>
 		<img class="blog-img" src="<?php bloginfo("stylesheet_directory"); ?>/img/blog.png" />
 		<div class="blog-header-right">
 			<h3>Follow our updates</h3>
-			<a href="<?php bloginfo('rss2_url'); ?>" class="call-to-action no-hash">
+			<a href="<?php bloginfo('rss2_url'); ?>" class="call-to-action no-hash rss">
 				<span>Subscribe to blog by RSS</span>
 				<img class="icon" src="<?php bloginfo("stylesheet_directory"); ?>/img/rss.png" />
 			</a>
@@ -18,11 +18,11 @@ get_header(); ?>
 	</div>
 </div>
 <div class="green-line"></div>
-<div class="wrapper">
+<div class="wrapper" id="content">
 	<div class="posts-left">
 		<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 			<div class="post-snippet">
-				<a href="<?php the_permalink(); ?>"><h2 class="post-title"><?php the_title(); ?></h2></a>
+				<a class="no-hover-underline" href="<?php the_permalink(); ?>"><h2 class="post-title"><?php the_title(); ?></h2></a>
 				<em>Posted on 
 					<a href="<?php echo get_month_link(get_the_time('Y'), get_the_time('m')); ?>">
 						<?php the_time('jS F Y'); ?>
@@ -30,8 +30,21 @@ get_header(); ?>
 					by <?php the_author_posts_link( ); ?>
 				</em>
 				<?php the_content("Continue reading..."); ?>
+				<div class="clear"></div>
 			</div>
 		<?php endwhile; endif; ?>
+		<div class="pagination-links">
+			<?php global $wp_query;
+
+			$big = 999999999;
+
+			echo paginate_links( array(
+				'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+				'format' => '?paged=%#%',
+				'current' => max( 1, get_query_var('paged') ),
+				'total' => $wp_query->max_num_pages
+			) ); ?>
+		</div>
 	</div>
 	<div id="sidebar">
 		<?php get_sidebar(); ?>

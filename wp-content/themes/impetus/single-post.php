@@ -18,7 +18,7 @@ get_header(); ?>
 	</div>
 </div>
 <div class="green-line"></div>
-<div class="wrapper">
+<div class="wrapper" id="content">
 	<div class="posts-left">
 		<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 			<div class="post-content">
@@ -30,8 +30,17 @@ get_header(); ?>
 					by <?php the_author_posts_link( ); ?>
 				</em>
 				<?php the_content("Continue reading..."); ?>
+				<div id="comments-list">
+					<?php comments_template(); ?>
+				</div>
 			</div>
 		<?php endwhile; endif; ?>
+		<div class="fl half">
+			<?php previous_post_link(); ?>
+		</div>
+		<div class="fr half text-right">
+			<?php next_post_link(); ?>
+		</div>
 	</div>
 	<div id="sidebar">
 		<?php get_sidebar(); ?>

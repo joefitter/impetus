@@ -9,7 +9,7 @@ get_header(); ?>
 	</div>
 </div>
 <div class="green-line"></div>
-<div class="wrapper">
+<div class="wrapper" id="content">
 	<a href="#" class="show-jobs">View Current Vacancies</a>
 	<div class="content-sidebar" id="jobs-sidebar">
 		<h2>Current Vacancies</h2>
@@ -55,6 +55,9 @@ get_header(); ?>
 						<img class="icon" src="<?php bloginfo( "stylesheet_directory" ); ?>/img/download.png" />
 					</a>
 					<p>You can also request an Application Packs by telephone; please leave a message on 01273 229381 stating clearly your name, contact number and address.</p>
+				<?php } else { ?>
+					<h3>Get in Touch</h3>
+					<?php echo do_shortcode('[contact-form-7 id="69" title="Volunteer Form"]'); ?>
 				<?php } ?>
 			</div>
 		</div>
