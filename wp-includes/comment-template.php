@@ -1402,8 +1402,10 @@ class Walker_Comment extends Walker {
 		<<?php echo $tag; ?> <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?> id="comment-<?php comment_ID(); ?>">
 		<?php if ( 'div' != $args['style'] ) : ?>
 		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+			<table>
 		<?php endif; ?>
-		<div class="comment-meta-holder">
+		<tr>
+		<td class="comment-meta-holder">
 			<div class="comment-author vcard">
 				<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
 				<?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
@@ -1418,17 +1420,17 @@ class Walker_Comment extends Walker {
 					/* translators: 1: date, 2: time */
 					printf( __( '%1$s' ), get_comment_date() ); ?></a>
 			</div>
-		</div>
-		<div class="comment-main-text-wrapper">
+		</td>
+		<td class="comment-main-text-wrapper">
 			<div class="comment-main-text">
 				<?php comment_text() ?>
 			</div>
 			<div class="reply">
 				<?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 			</div>
-		</div>
-		
-		<div class="clear"></div>
+		</td>
+		</tr>
+		</table>
 		<?php if ( 'div' != $args['style'] ) : ?>
 		</div>
 		<?php endif; ?>

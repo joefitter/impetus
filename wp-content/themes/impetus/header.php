@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8"/>
 	<title><?php wp_title( '|', true, 'right' ); ?><?php bloginfo('name'); ?></title>
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,400|Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="alternate" title="Impetus RSS" href="<?php bloginfo('home'); ?>/feed/" type="application/rss+xml">
@@ -64,10 +64,10 @@
 					<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 				</div>
 				<div id="header-right">
-					<div id="text-size-controls">
-						<a href="#" class="change-text" id="small-text">A</a>
-						<a href="#" class="change-text" id="med-text">A</a>
-						<a href="#" class="change-text" id="large-text">A+</a>
+					<div class="text-size-controls">
+						<a href="javscript:void(0)" class="change-text" id="small-text">A</a>
+						<a href="javscript:void(0)" class="change-text" id="med-text">A</a>
+						<a href="javscript:void(0)" class="change-text" id="large-text">A+</a>
 					</div>
 					<div id="small-menu">
 						<ul>
@@ -140,22 +140,40 @@
 				</div>
 			</div>
 		</div>
-		<?php if(!is_404() && !is_page("Contact") && !is_post_type_archive("project") && !is_page("Jobs") && !is_page("Reports") && !is_home() && !is_singular( "volunteer" ) && !is_archive() && !is_singular("post")){ ?>
+		<?php if(!is_404() && !is_page("Contact") && !is_page("Accessibility") && !is_post_type_archive("project") && !is_page("Jobs") && !is_page("Reports") && !is_home() && !is_singular( "volunteer" ) && !is_archive() && !is_singular("post")){ ?>
 		<!--[if !IE]><!-->
-			<div id="header-wrapper">
+			<div id="header-wrapper"<?php if(is_page("Home")){ ?> class="homepage"<?php } ?>>
 		<!--<![endif]-->
+				<?php if(is_singular( "story" )){ 
+					$terms = array_shift(get_the_terms(get_the_ID(), "story_project"));
+					$project = str_replace("Story ", "", $terms->name);
+					$projects = get_posts_by_type("project");
+					if($projects->have_posts()) : while($projects->have_posts()) : $projects->the_post();
+						if($project === get_the_title()){
+							$pageID = get_the_ID();
+						}
+					endwhile; endif;
+					wp_reset_postdata(); wp_reset_query(); rewind_posts();
+				} else {
+					$pageID = $post->ID;
+				}?>
 				<div id="header-image"<?php if(is_page("Home")){ ?> class="homepage"<?php } ?>>
-							<?php if(get_post_meta($post->ID, "overlay_subtitle", true) != ""){ ?>
+						<?php if($post->ID == 134){ ?>
+						<div class="wrapper" id="logo-holder">
+							<img id="icas-logo" src="<?php bloginfo("stylesheet_directory"); ?>/img/icas-logo.png" />
+						</div>
+						<?php } ?>
+							<?php if(get_post_meta($pageID, "overlay_subtitle", true) != ""){ ?>
 						<div class="overlay">
 							<div class="overlay-inner">
-								<h1 class="orange overlay-title"><?php the_title(); ?><?php if(is_page("About")){ ?> Impetus<?php } ?><?php if(is_page("Reports")){ ?> &amp; Policies<?php } ?></h1>
-								<p class="projects-strapline"><?php echo get_post_meta($post->ID, "overlay_subtitle", true); ?></p>
+								<h1 class="orange overlay-title"><?php echo get_the_title($pageID); ?><?php if(is_page("About")){ ?> Impetus<?php } ?><?php if(is_page("Reports")){ ?> &amp; Policies<?php } ?></h1>
+								<p class="projects-strapline"><?php echo get_post_meta($pageID, "overlay_subtitle", true); ?></p>
 							</div>
 							<a href="#" class="orange no-underline" id="more">more &darr;</a>
 						</div>
 					<?php } ?>
 					<div id="image-inner">
-						<?php echo get_the_post_thumbnail($post->ID); ?>
+						<?php echo get_the_post_thumbnail($pageID); ?>
 					</div>
 				</div>
 		<!--[if !IE]><!-->

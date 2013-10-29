@@ -41,6 +41,7 @@ get_header(); ?>
 		<div class="fr half text-right">
 			<?php next_post_link(); ?>
 		</div>
+		<div class="clear"></div>
 	</div>
 	<div id="sidebar">
 		<?php get_sidebar(); ?>

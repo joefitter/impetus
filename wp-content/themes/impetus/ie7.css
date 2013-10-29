@@ -37,3 +37,16 @@ div#image-inner img {
 position:static;
 width:100%;
 }
+
+.image-overlay {
+	background:url("img/80-white.png") !important;
+}
+.story-overlay {
+	background:url("img/80-white.png") !important;
+}
+.thumbnail-overlay {
+	background:url("img/80-white.png") !important;
+}
+.overlay {
+	background:url("img/80-white.png") !important;
+}

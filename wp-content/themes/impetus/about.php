@@ -4,7 +4,17 @@
  * 
  */
 get_header(); ?>
-<div class="grey-back">
+<?php if(is_page( "Reports" )){ ?>
+<div id="projects-top">
+    <div class="wrapper">
+        <div class="reports-top">
+            <h1 class="projects-title orange"><?php the_title(); ?></h1>
+            <p class="projects-strapline reports"><?php echo get_post_meta(get_the_ID(), "overlay_subtitle", true); ?></p>
+        </div>
+    </div>
+</div>
+<?php } ?>
+<div class="grey-back" id="tabs-top">
 	<div class="wrapper" id="main">
 		<div>
 			<h2><?php echo get_subtitle(get_the_ID()); ?></h2>
@@ -22,7 +32,7 @@ get_header(); ?>
 <div id="content">
 	<div class="green-line"></div>
 	<div class="wrapper">
-		<div>
+		<div id="tab-holder">
 			<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
 			<div class="tabs-catch-all" data-tab="<?php echo $post->ID; ?>">
 				<h1 class="tab-title"><?php the_title(); ?>

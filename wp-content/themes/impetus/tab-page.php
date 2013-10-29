@@ -7,7 +7,7 @@
 $page_id = $post->ID;
 get_header(); ?>
 
-<div class="grey-back">
+<div class="grey-back" id="tabs-top">
 	<div id="main" class="wrapper">
 		<div>
 			<h2><?php echo get_subtitle($page_id); ?></h2>
@@ -22,26 +22,27 @@ get_header(); ?>
 		</div>
 	</div>
 </div>
-<div style="overflow:hidden">
+<div id="content">
 	<div class="green-line"></div>
 	<div class="wrapper">
-		<div id="content">
-			<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
-			<div class="tabs-catch-all" data-tab="<?php echo $post->ID; ?>">
-				<h1 class="tab-title"><?php the_title(); ?>
-					<?php if(get_the_number($post->ID)){ ?>
-						<span class="call-direct">Call direct <a class="number" href="tel:<?php echo get_the_number($post->ID); ?>"><?php echo get_the_number($post->ID); ?></a><img class="phone" src="<?php bloginfo("stylesheet_directory"); ?>/img/phone.png"></span>
-					<?php } ?>
-				</h1>
-				<div class="tab-inner">
-					<?php the_content(); ?>
+		<div id="tab-holder">
+				<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
+				<div class="tabs-catch-all" data-tab="<?php echo $post->ID; ?>">
+					<h1 class="tab-title"><?php the_title(); ?>
+						<?php if(get_the_number($post->ID)){ ?>
+							<span class="call-direct">Call direct <a class="number" href="tel:<?php echo get_the_number($post->ID); ?>"><?php echo get_the_number($post->ID); ?></a><img class="phone" src="<?php bloginfo("stylesheet_directory"); ?>/img/phone.png"></span>
+						<?php } ?>
+					</h1>
+					<div class="tab-inner">
+						<?php the_content(); ?>
+					</div>
 				</div>
+				<?php endwhile; endif; ?>
+				<div class="content-sidebar">
+					<?php echo get_content_by_ID($page_id); ?>		
+				</div>
+				<div class="clear"></div>
 			</div>
-			<?php endwhile; endif; ?>
-			<div class="content-sidebar">
-				<?php echo get_content_by_ID($page_id); ?>		
-			</div>
-			<div class="clear"></div>
 		</div>
 	</div>
 	<div class="tab-bottom">

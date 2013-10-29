@@ -303,6 +303,17 @@ if( class_exists( 'kdMultipleFeaturedImages' ) ) {
 
 add_action( 'init', 'team_post_type' );
 
+if ( !function_exists('fb_addgravatar') ) {
+	function fb_addgravatar( $avatar_defaults ) {
+		$myavatar = get_bloginfo('template_directory') . '/img/avatar.jpg';
+		$avatar_defaults[$myavatar] = 'Avatar';
+
+		return $avatar_defaults;
+	}
+
+	add_filter( 'avatar_defaults', 'fb_addgravatar' );
+} 
+
 function get_featured_post_by_cat($cat){
 	$args = array("post_type"=>"post", "orderby" => "rand", "posts_per_page" => "1", "tag" => "Featured", "category_name" => $cat);
 	return new WP_Query($args);
@@ -387,9 +398,9 @@ function get_layout($id){
 }
 
 $callToActions = array(	
-	"get-help" => array(
-		"text" => "Get help from",
-		"url" => get_permalink_from_page_name("Get Help")
+	"get-support" => array(
+		"text" => "Get support from",
+		"url" => get_permalink_from_page_name("Get Support")
 	),
 	"volunteer" => array(
 		"text" => "Volunteer for",
@@ -421,13 +432,13 @@ function get_call_to_action_buttons($page){
 			break;
 		case 'Donate':
 			$link1 = "Get Support";
-			$text1 = "Get support with";
+			$text1 = "Get support from";
 			$link2 = "Volunteer";
 			$text2 = "Volunteer for";
 			break;
 		case 'Volunteer':
 			$link1 = "Get Support";
-			$text1 = "Get support with";
+			$text1 = "Get support from";
 			$link2 = "Donate";
 			$text2 = "Donate to";
 			break;

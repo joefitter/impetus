@@ -20,6 +20,7 @@ get_header(); ?>
 			<?php } ?>
 		</div>
 		<div class="tab-bottom-right half">
+
 			<h3><?php echo get_post_meta($post->ID, "call_to_action_right", true); ?></h3>
 			<?php if($post->ID == 134){ ?>
 				<a href="a download" class="call-to-action no-change">
@@ -46,7 +47,7 @@ get_header(); ?>
 		<div class="clear"></div>
 	</div>
 </div>
-<div class="grey-back">
+<div class="grey-back" id="tabs-top">
 	<div class="wrapper" id="main">
 		<div>
 			<ul class="tabs">
@@ -63,7 +64,7 @@ get_header(); ?>
 <div id="content">
 	<div class="green-line"></div>
 	<div class="wrapper">
-		<div>
+		<div id="tab-holder">
 			<?php if($tabs->have_posts()) : while($tabs->have_posts()) : $tabs->the_post() ?>
 			<div class="tabs-catch-all" data-tab="<?php echo $post->ID; ?>">
 				<h1 class="tab-title"><?php the_title(); ?>
@@ -79,16 +80,17 @@ get_header(); ?>
 			<?php endwhile; endif; ?>
 			<?php wp_reset_postdata(); wp_reset_query(); rewind_posts(); ?>
 			<div class="content-sidebar fr">
-						
+				<?php include("dynamic-sidebar.php"); ?>
 			</div>
 			<div class="clear"></div>
 		</div>
 	</div>
+</div>
 	<?php $footer_posts = get_featured_post_by_cat(get_the_title());
 			if($footer_posts->have_posts()) : while($footer_posts->have_posts()) : $footer_posts->the_post(); ?>
 	<div class="tab-bottom">
 		<div class="wrapper">
-			<h3><img class="rss" src="<?php bloginfo("stylesheet_directory"); ?>/img/rss-alt.png" />Latest News about <?php the_title(); ?></h3>
+			<h3><img class="rss" src="<?php bloginfo("stylesheet_directory"); ?>/img/rss-alt.png" />Latest News about <?php echo $page_title ?></h3>
 				<div class="tab-bottom-left">
 				
 				<h6><?php the_title(); ?></h6>
@@ -110,5 +112,5 @@ get_header(); ?>
 		</div>
 	</div>
 	<?php endwhile; endif; ?>
-</div>
+
 <?php get_footer(); ?>

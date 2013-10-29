@@ -13,10 +13,14 @@
 		});
 	}
 	var lastTab = "";
-	function showTab(){
+	function showTab(click){
 		var activeTab = null, selectedTab;
 		$("ul.tabs li a, ul.job-tabs li a").removeClass("selected");
-		$("div.tabs-catch-all").hide();
+		if($("ul.tabs").hasClass("accordion")){
+			$("div.tabs-catch-all").slideUp();
+		} else {
+			$("div.tabs-catch-all").hide();
+		}
 		if(window.location.hash){
 			activeTab = window.location.hash.replace("#", "");
 		}
@@ -56,7 +60,13 @@
 		}
 
 		var $displayTab = $("div.tabs-catch-all[data-tab='" + tabId + "']");
-		$displayTab.show();
+		if($("ul.tabs").hasClass("accordion")){
+			$displayTab.slideDown(400);
+			
+		} else {
+
+			$displayTab.show();
+		}
 		if(activeTab == "our-team" || activeTab == "stories"){
 			adjustHeights();
 		}
@@ -89,13 +99,54 @@
 		lastTab = tabUrl;
 	}
 
+	function arrangeTabs(){
+		var $grey = $("div#tabs-top");
+		if($("body").width() <= 943){
+			var $tabs = $("ul.tabs li");
+			if(!$tabs.parent("ul").hasClass("accordion")){
+				$grey.removeClass("grey-back");
+				window.stateCache = $("body");
+				$tabs.each(function(){
+					var $this = $(this),
+						tab = $this.children("a").attr("data-tab"),
+						$tabContent = $("div.tabs-catch-all[data-tab='"+tab+"']");
+					$tabContent.detach();
+					$this.after($tabContent);
+				});
+				$tabs.parent("ul").addClass("accordion");
+			}
+			
+		} else {
+			if($("ul.tabs").hasClass("accordion")){
+				$grey.addClass("grey-back");
+				$("ul.tabs").removeClass("accordion");
+				$("div.tabs-catch-all").each(function(){
+					var $this = $(this);
+					$this.detach();
+					$("div#tab-holder div.clear").before($this);
+				});
+				var side = $("div.content-sidebar");
+				side.detach();
+				$("div#tab-holder div.clear").before(side);
+			}
+			
+		}
+	}
+
 	$(function(){
+		arrangeTabs();
+		$(window).resize(function(){
+			arrangeTabs();
+		});
 		showTab();
-		$("ul.tabs li a, ul.job-tabs li a").click(function(){
+		$("ul.tabs>li a, ul.job-tabs>li a").click(function(e){
 			var $this = $(this);
-			parent.location.hash = $this.attr("data-id");
-			showTab();
+			if(!$this.hasClass("selected")){
+				parent.location.hash = $this.attr("data-id");
+				showTab(true);
+			}
 			return false;
+
 		});
 	});
 })(jQuery);

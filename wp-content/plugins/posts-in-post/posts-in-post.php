@@ -48,7 +48,7 @@ function get_stories($atts, $content){
 	$posts = get_team_members_get_posts_by_type($type, $order, $orderby, "story_project", "Story " . $GLOBALS['page_title']);
 	$return = "";
 	if($posts->have_posts()) : while($posts->have_posts()) : $posts->the_post();
-		$return .= '<a class="story-teaser" href="'.get_permalink().'">
+		$return .= '<a class="story-teaser-main" href="'.get_permalink().'">
 						<div class="story-image">
 							'.get_the_post_thumbnail( $post->ID, array(286, 190)).'
 							<div class="story-image-overlay">

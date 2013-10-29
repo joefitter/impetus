@@ -39,7 +39,7 @@ get_header(); ?>
 			<h2 class="projects green">How you can support us</h2>
 			<p>Impetus are always looking for volunteers to take part in our charity based projects.</p>
 			<p>You can also directly donate money to one of our causes.</p>
-			<div class="teaser-button">
+			<div class="teaser-button full-width">
 				<a class="view-project half left" href="/volunteer">Volunteer to help <?php echo get_right_arrow_HTML(); ?></a>
 				<a class="view-project half right" href="/donate">Donate to us <?php echo get_right_arrow_HTML(); ?></a>
 			</div>
