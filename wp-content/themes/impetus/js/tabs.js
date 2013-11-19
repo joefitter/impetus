@@ -29,6 +29,8 @@
 			tabUrl = selectedTab.attr("data-id"),
 			tabName = selectedTab.attr("data-name");
 		selectedTab.addClass("selected");
+		$("option.ASpire, option.InterAct, option.BetterFutures, option.NeighbourhoodCareScheme").hide();
+		$("option." + tabName).show();
 		if(window.location.href.indexOf("get-support") !== -1){
 			$("input[name='subject']").val("Get Support - " + tabName);
 		} else if(window.location.href.indexOf("volunteer") !== -1){

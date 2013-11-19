@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* =FancyTabs
+-------------------------------------------------------------- */
+#fancy-tabs {
+	display: block;
+	line-height: 22px;
+}
+
+
+
+
+/*#fancy-tabs ul li a:hover {	
+	color: #FFF;
+	background: #333 !important;
+}*/

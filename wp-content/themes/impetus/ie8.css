@@ -1,0 +1,20 @@
+.wrapper {
+    width: 960px !important;
+}
+
+.image-overlay {
+    background:url("img/80-white.png") !important;
+}
+.story-overlay {
+    background:url("img/80-white.png") !important;
+}
+.thumbnail-overlay {
+    background:url("img/80-white.png") !important;
+}
+.overlay {
+    background:url("img/80-white.png") !important;
+}
+
+body {
+    min-width: 960px;
+}

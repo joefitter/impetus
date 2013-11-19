@@ -10,8 +10,11 @@
 	<link rel="stylesheet" href="<?php bloginfo("stylesheet_directory"); ?>/css/ladda.min.css" />
 	<link rel="stylesheet" href="<?php bloginfo("stylesheet_directory"); ?>/reset.css"/>
 	<link rel="stylesheet" href="<?php bloginfo("stylesheet_url"); ?>"/>
-	<!--[if IE]>
+	<!--[if IE 7]>
 		<link rel="stylesheet" href="<?php bloginfo("stylesheet_directory"); ?>/ie7.css" />
+	<![endif]-->
+	<!--[if IE 8]>
+		<link rel="stylesheet" href="<?php bloginfo("stylesheet_directory"); ?>/ie8.css" />
 	<![endif]-->
 	<?php if(is_page("Get Support") || is_page("Donate") || is_page("Volunteer") || is_singular("project") || is_page("Jobs") || is_page("About") || is_page("Reports")){ ?>
 		<script src="<?php bloginfo("stylesheet_directory"); ?>/js/tabs.js"></script>
@@ -41,13 +44,17 @@
 		$volunteer_vacancies = array();
 		$volunteer = get_posts_by_type("volunteer");
 		if($volunteer->have_posts()) : while($volunteer->have_posts()) : $volunteer->the_post();
-			array_push($volunteer_vacancies, get_the_title());
+			$cat = get_the_terms($post->ID, 'job_tags');
+			reset($cat);
+			$first_key = key($cat);
+			array_push($volunteer_vacancies, array("name"=>get_the_title(), "cat" => str_replace("Volunteer ", "", $cat[$first_key]->name)))
+			;
 		endwhile; endif;
 		wp_reset_postdata(); wp_reset_query(); rewind_posts(); ?>
 		<script>
 			$(function(){
 				<?php foreach($volunteer_vacancies as $vacancy){ ?>
-					$("select[name='your-position']").append("<option value='<?php echo $vacancy; ?>'><?php echo $vacancy; ?></option>");
+					$("select[name='your-position']").append("<option class='<?php echo $vacancy['cat']; ?>' value='<?php echo $vacancy['name']; ?>'><?php echo $vacancy['name']; ?></option>");
 				<?php } ?>
 				<?php if(is_singular('volunteer')){ ?>
 					$("select[name='your-position']").val('<?php the_title(); ?>');
@@ -65,14 +72,13 @@
 				</div>
 				<div id="header-right">
 					<div class="text-size-controls">
-						<a href="javscript:void(0)" class="change-text" id="small-text">A</a>
-						<a href="javscript:void(0)" class="change-text" id="med-text">A</a>
-						<a href="javscript:void(0)" class="change-text" id="large-text">A+</a>
+						<a href="#" class="change-text" id="small-text">A</a>
+						<a href="#" class="change-text" id="med-text">A</a>
+						<a href="#" class="change-text" id="large-text">A+</a>
 					</div>
 					<div id="small-menu">
 						<ul>
 							<li><a href="/jobs"<?php if(is_page("Jobs")){ ?> class="selected"<?php } ?>>Jobs</a></li>
-							<li><a href="/reports"<?php if(is_page("Reports")){ ?> class="selected"<?php } ?>>Reports</a></li>
 							<li><a href="/contact"<?php if(is_page("Contact")){ ?> class="selected"<?php } ?>>Contact</a></li>
 							<li id="last">
 								<a href="/accessibility"<?php if(is_page("Accessibility")){ ?> class="selected"<?php } ?>>Accessibility</a>
@@ -84,13 +90,14 @@
 					<div id="social-links">
 						<p id="find-us">Find us on</p>
 						
-						<a class="social" id="twitter-link" target="_blank" href="https://twitter.com/BHImpetus"><img src="<?php bloginfo("stylesheet_directory"); ?>/img/twitter.png"/></a>
-						<a class="social" id="facebook-link" target="_blank" href="https://www.facebook.com/pages/Brighton-Hove-Impetus/298908810236826"><img src="<?php bloginfo("stylesheet_directory"); ?>/img/facebook.png"/></a>
+						<a class="social" id="twitter-link" target="_blank" href="https://twitter.com/BHImpetus"><img src="<?php bloginfo("stylesheet_directory"); ?>/img/twitter-large.png"/></a>
+						<a class="social" id="facebook-link" target="_blank" href="https://www.facebook.com/pages/Brighton-Hove-Impetus/298908810236826"><img src="<?php bloginfo("stylesheet_directory"); ?>/img/facebook-large.png"/></a>
+						<a id="menu-button">Menu<img src="<?php bloginfo("stylesheet_directory"); ?>/img/menu.png"></a>
 						<div class="clear"></div>
 					</div>
 				</div>
 				<div class="clear"></div>
-				<a id="menu-button">Menu<img src="<?php bloginfo("stylesheet_directory"); ?>/img/menu.png"></a>
+				
 			</div>
 		</div>
 
@@ -133,15 +140,17 @@
 							<div class="project-excerpt">
 								<p><?php the_excerpt(); ?></p>
 							</div>
+							<div class="clear"></div>
 						</div>
 					<?php $first = false; ?>
 					<?php endwhile; ?>
 				<?php wp_reset_postdata(); wp_reset_query(); rewind_posts(); ?>
 				</div>
+				<div class="clear"></div>
 			</div>
 		</div>
 		<?php if(!is_404() && !is_page("Contact") && !is_page("Accessibility") && !is_post_type_archive("project") && !is_page("Jobs") && !is_page("Reports") && !is_home() && !is_singular( "volunteer" ) && !is_archive() && !is_singular("post")){ ?>
-		<!--[if !IE]><!-->
+		<!--[if !IE 7]><!-->
 			<div id="header-wrapper"<?php if(is_page("Home")){ ?> class="homepage"<?php } ?>>
 		<!--<![endif]-->
 				<?php if(is_singular( "story" )){ 
@@ -176,14 +185,14 @@
 						<?php echo get_the_post_thumbnail($pageID); ?>
 					</div>
 				</div>
-		<!--[if !IE]><!-->
+		<!--[if !IE 7]><!-->
 			</div>
 		<!--<![endif]-->
 			<div id="anchor"></div>
 			<div class="orange-line"></div>
 		<?php }?>
 		<?php if(is_post_type_archive("project")){ ?>
-		<!--[if !IE]><!-->
+		<!--[if !IE 7]><!-->
 			<div id="header-wrapper">
 		<!--<![endif]-->
 				<div id="header-image">
@@ -200,7 +209,7 @@
 						<?php echo get_the_post_thumbnail(13); ?>
 					</div>
 				</div>
-		<!--[if !IE]><!-->
+		<!--[if !IE 7]><!-->
 			</div>
 		<!--<![endif]-->
 		<div id="anchor"></div>

@@ -22,25 +22,22 @@ function sortHeights(){
 }
 
 function addSocialLinksToNavigation(){
-    var twitter = $("#twitter-link").attr("href"),
-        facebook = $("#facebook-link").attr("href"),
-        path = $("#twitter-link img").attr("src").replace("twitter.png", "");
-    $(".nav-menu ul li").last().after($("<li />", {
-        class: "half-width hidden",
-        html: '<a target="_blank" href="' + twitter +'"><img src="'+path+'twitter-white.png" /></a>',
-        id: "twitter-nav-link"
-    }));
-    $(".nav-menu ul li").last().after($("<li />", {
-        class: "half-width hidden",
-        html: '<a target="_blank" href="'+facebook+'"><img src="'+path+'facebook-white.png" /></a>',
-        id: "facebook-nav-link"
-    }));
+//     // var twitter = $("#twitter-link").attr("href"),
+//     //     facebook = $("#facebook-link").attr("href"),
+//     //     path = $("#twitter-link img").attr("src").replace("twitter.png", "");
+//     // $(".nav-menu ul li").last().after($("<li />", {
+//     //     html: '<a target="_blank" href="' + twitter +'"><img src="'+path+'twitter-white.png" /></a>',
+//     //     id: "twitter-nav-link"
+//     // }).addClass("half-width hidden"));
+//     // $(".nav-menu ul li").last().after($("<li />", {
+//     //     html: '<a target="_blank" href="'+facebook+'"><img src="'+path+'facebook-white.png" /></a>',
+//     //     id: "facebook-nav-link"
+//     // }).addClass("half-width hidden"));
     var textSize = $(".text-size-controls").clone();
     $(".nav-menu ul li").last().after($("<li />", {
-        class: "third-width hidden",
         id: "text-size-menu-control",
         html: textSize
-    }));
+    }).addClass("hidden page-item"));
 
 }
 
@@ -115,6 +112,7 @@ $(function(){
         $("#text-size-menu-control a, .text-size-controls a").removeClass("selected");
         $("#text-size-menu-control a#" + size + ", .text-size-controls a#" + size).addClass("selected");
         $("body").removeClass("small-text med-text large-text").addClass(size);
+        return false;
     });
     $("a#menu-button").click(function(){
         var $el = $("div.navbar");

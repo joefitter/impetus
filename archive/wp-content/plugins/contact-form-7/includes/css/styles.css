@@ -1,0 +1,155 @@
+div.wpcf7 {
+	margin: 0;
+	padding: 0;
+}
+
+div.wpcf7-response-output {
+	padding: 1em 1em;
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	z-index: 100000000000;
+	color:white;
+	text-align: center;
+	font-weight: 600;
+}
+
+input.wpcf7-not-valid, textarea.wpcf7-not-valid , select.wpcf7-not-valid{
+	border-color:#EA2626 !important;
+}
+
+div.wpcf7-mail-sent-ok {
+	background-color: #97c947;
+}
+
+div.wpcf7-mail-sent-ng {
+	border: 2px solid #ff0000;
+}
+
+div.wpcf7-spam-blocked {
+	border: 2px solid #ffa500;
+}
+
+div.wpcf7-validation-errors {
+	background-color: #EA2626;
+
+}
+
+span.wpcf7-form-control-wrap {
+	position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+	z-index: 100;
+	color:#EA2626;
+	font-family: "Open Sans", arial, helvetica, sans-serif;
+	font-weight:700;
+	font-size: 10pt;
+	width: 280px;
+	padding: 2px;
+}
+
+span.wpcf7-not-valid-tip-no-ajax {
+	color: #f00;
+	font-size: 10pt;
+	display: block;
+}
+
+span.wpcf7-list-item {
+	margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+	display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+	border: none;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+div.wpcf7 div.ajax-error {
+	display: none;
+}
+
+div.wpcf7 .placeheld {
+	color: #888;
+}
+
+.wpcf7-form input,
+.wpcf7-form textarea,
+.wpcf7-form select {
+	width:100%;
+	border:1px solid #cfcece;
+	padding:5px 10px;
+	resize:none;
+	margin-top:0.5em;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+
+.wpcf7-form select {
+	width: 100%;
+	height:42px;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+}
+
+/*div.select-holder {
+	position: relative;
+}
+
+div.select-button {
+	position: absolute;
+	bottom:-1px;
+	right:-1px;
+	height:42px;
+	width:46px;
+	background: url("../../images/select-arrow.png") 0 0 no-repeat;
+	z-index: 10;
+}*/
+
+div.wpcf7 {
+	float:left;
+}
+
+.wpcf7-form input {
+	height:30px;
+}
+
+.wpcf7-form p {
+	color:#ec7c27;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+input.wpcf7-submit, .btn-large, #submit {
+	background-color:#ec7c27;
+	border:none;
+	color:#fff;
+	font-weight: 600 !important;
+	margin-top:0;
+	display: inline-block;
+	text-align: center;
+	width:100%;
+	cursor: pointer;
+	text-decoration: none;
+	padding:12px 20px;
+	font-size: 1.25em;
+	font-weight: normal;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+
+.btn-large.wide {
+	width:100%;
+}
+
+input.wpcf7-submit {
+	height:45px;
+}
