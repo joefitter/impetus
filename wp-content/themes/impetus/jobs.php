@@ -9,7 +9,7 @@ get_header(); ?>
 <div id="projects-top">
 	<div class="wrapper">
 		<h1 class="projects-title orange">Jobs at Impetus</h1>
-		<p class="projects-strapline">We are currently hiring. View vacancies and download an application form below.</p>
+		<p class="projects-strapline"><?php echo get_subtitle(get_the_ID()); ?></p>
 	</div>
 </div>
 <div class="green-line"></div>
@@ -65,7 +65,14 @@ get_header(); ?>
 				<?php } ?>
 			</div>
 		</div>
-	<?php endwhile; endif; ?>
+	<?php endwhile; else : ?>
+	<div>
+		<div class="tab-inner job-tab">
+			<?php the_content(); ?>
+		</div>
+	</div>
+
+<?php endif; ?>
 	
 	<div class="clear"></div>
 </div>

@@ -9,15 +9,18 @@ get_header(); ?>
 	<div class="wrapper">
 		<div class="tab-bottom-left half">
 			<h3><?php echo get_post_meta($post->ID, "call_to_action_left", true); ?></h3>
-			<?php if($post->ID == 134){ ?>
+			<?php if($post->ID == 134){ ?>>
 				<a class="number orange bold" style="margin-left:0;" href="tel:01273229002">01273 229 002 <img class="phone-link" src="<?php bloginfo("stylesheet_directory"); ?>/img/phone-orange.png"></a>
 			<?php } else { ?>
-			<a href="<?php echo get_permalink_from_page_name("Get Help") . "#" . name_to_id(get_the_title()); ?>" class="call-to-action no-change">
-				<span>Get help from</span> 
+			<?php if($post->ID != 1637){ ?>
+			<a href="<?php echo get_permalink_from_page_name("Get Support") . "#" . name_to_id(get_the_title()); ?>" class="call-to-action no-change">
+				<span>Get support from</span> 
 				<span><?php the_title(); ?></span>
 				<img src="<?php bloginfo("stylesheet_directory"); ?>/img/arrow-right.png"/>
 			</a>
 			<?php } ?>
+			<?php } ?>
+			<div class="clear"></div>
 		</div>
 		<div class="tab-bottom-right half">
 
@@ -32,17 +35,20 @@ get_header(); ?>
 					<?php echo get_right_arrow_html(); ?>
 				</a>
 			<?php } else { ?>
+			<?php if($post->ID != 1637){ ?>
 			<a href="<?php echo get_permalink_from_page_name("Volunteer") . "#" . name_to_id(get_the_title()); ?>" class="call-to-action no-change">
 				<span>Volunteer to help</span>
 				<?php echo get_right_arrow_html(); ?>
 			</a>
+			<?php } ?>
+			<?php if($post->ID != 1637){ ?>
 			<a href="<?php echo get_permalink_from_page_name("Donate") . "#" . name_to_id(get_the_title()); ?>" class="call-to-action no-change">
 				<span>Donate to</span> 
 				<span><?php the_title(); ?></span>
 				<?php echo get_right_arrow_html(); ?>
 			</a>
 			<?php } ?>
-			<div class="clear"></div>
+			<?php } ?>
 		</div>
 		<div class="clear"></div>
 	</div>
