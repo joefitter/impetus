@@ -4,7 +4,6 @@ get_header(); ?>
 	<div class="wrapper">
 		<div class="blog-header-left">
 			<h1 class="projects-title orange">Impetus Blog</h1>
-			<p class="projects-strapline">Real people. Real issues.</p>
 		</div>
 		<img class="blog-img" src="<?php bloginfo("stylesheet_directory"); ?>/img/blog.png" />
 		<div class="blog-header-right">
@@ -58,9 +57,9 @@ get_header(); ?>
 			
 		</div>
 		<div class="tab-bottom-right half">
-			<h3>Understand our projects</h3>
-			<a href="<?php echo get_permalink_from_page_name("Projects"); ?>" class="call-to-action no-change">
-				<span>Learn more about Impetus projects</span>
+			<h3>Understand our services</h3>
+			<a href="<?php echo get_permalink_from_page_name("Services"); ?>" class="call-to-action no-change">
+				<span>Learn more about Impetus' services</span>
 				<?php echo get_right_arrow_HTML(); ?>
 			</a>
 		</div>

@@ -19,7 +19,7 @@ get_header(); ?>
 	<?php $terms = array_shift(get_the_terms(get_the_ID(), "story_project"));
 					$project = str_replace("Story ", "", $terms->name); ?>
 	<div id="sidebar" class="no-head">
-		<a href="<?php echo get_permalink_from_page_name("Projects") . name_to_id($project) . "/#stories" ?>" class="call-to-action left-arrow">
+		<a href="<?php echo get_permalink_from_page_name("Services") . name_to_id($project) . "/#stories" ?>" class="call-to-action left-arrow">
 			View All <?php echo $project ?> Stories
 			<img src="<?php bloginfo("stylesheet_directory"); ?>/img/arrow-left.png" />
 		</a>

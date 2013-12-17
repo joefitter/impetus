@@ -22,17 +22,7 @@ function sortHeights(){
 }
 
 function addSocialLinksToNavigation(){
-//     // var twitter = $("#twitter-link").attr("href"),
-//     //     facebook = $("#facebook-link").attr("href"),
-//     //     path = $("#twitter-link img").attr("src").replace("twitter.png", "");
-//     // $(".nav-menu ul li").last().after($("<li />", {
-//     //     html: '<a target="_blank" href="' + twitter +'"><img src="'+path+'twitter-white.png" /></a>',
-//     //     id: "twitter-nav-link"
-//     // }).addClass("half-width hidden"));
-//     // $(".nav-menu ul li").last().after($("<li />", {
-//     //     html: '<a target="_blank" href="'+facebook+'"><img src="'+path+'facebook-white.png" /></a>',
-//     //     id: "facebook-nav-link"
-//     // }).addClass("half-width hidden"));
+
     var textSize = $(".text-size-controls").clone();
     $(".nav-menu ul li").last().after($("<li />", {
         id: "text-size-menu-control",

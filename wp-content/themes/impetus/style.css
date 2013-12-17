@@ -1752,6 +1752,15 @@ a.show-jobs {
 	text-decoration: none !important;
 }
 
+#sidebar  h2:not(.sidebar-section h2), #sidebar h3:not(.sidebar-section h3), #sidebar h4:not(.sidebar-section h4) {
+	margin-top:0 !important;
+}
+
+#sidebar img {
+	max-width:100%;
+}
+
+
 @media all and (max-width: 857px){
 
 	header .orange-line {
@@ -2379,5 +2388,14 @@ a.show-jobs {
 	}
 	a#large-text {
 		font-size: 28px !important;
+	}
+}
+
+@media all and (max-width: 1280px){
+	#header-image.homepage {
+		height: 240px !important;
+	}
+	#header-image.homepage #image-inner {
+		bottom:100px !important;
 	}
 }

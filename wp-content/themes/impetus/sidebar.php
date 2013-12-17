@@ -36,7 +36,7 @@
 	</ul>
 </div>
 <div class="sidebar-section">
-	<h2><?php _e("Projects"); ?></h2>
+	<h2><?php _e("Services"); ?></h2>
 	<ul>
 		<?php wp_list_cats("sort_column=name&optioncount=1&heirachical=0"); ?>
 	</ul>

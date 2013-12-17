@@ -8,26 +8,26 @@
 			$(this).addClass("selected");
 			$(".project-details[data-id='" + id + "']").addClass("selected");
 		});
-		$(".nav-menu ul li a:contains('Projects'), #projects-dropdown").mouseenter(function(){
+		$(".nav-menu ul li a:contains('Services'), #projects-dropdown").mouseenter(function(){
 			for(var i=0; i< timeout.length; i++){
 				clearTimeout(timeout[i]);
 			}
-			$(".nav-menu ul li a:contains('Projects'), #projects-dropdown").addClass("hover");
+			$(".nav-menu ul li a:contains('Services'), #projects-dropdown").addClass("hover");
 		});
-		$(".nav-menu ul li a:contains('Projects'), #projects-dropdown").mouseleave(function(){
+		$(".nav-menu ul li a:contains('Services'), #projects-dropdown").mouseleave(function(){
 			timeout.push(setTimeout(function(){
-				$(".nav-menu ul li a:contains('Projects'), #projects-dropdown").removeClass("hover");
+				$(".nav-menu ul li a:contains('Services'), #projects-dropdown").removeClass("hover");
 			}, 100));
 		});
 		$(document).mousemove(function(){
-			if($(".nav-menu ul li a:contains('Projects')").hasClass("hover") || $("#projects-dropdown").hasClass("hover")){
-				if($(document).width() > 857){
+			if($(".nav-menu ul li a:contains('Services')").hasClass("hover") || $("#projects-dropdown").hasClass("hover")){
+				if($(document).width() > 983){
 					$("#projects-dropdown").show();
-					$(".nav-menu ul li a:contains('Projects')").addClass("selected");
+					$(".nav-menu ul li a:contains('Services')").addClass("selected");
 				}
 			} else {
-				$("#projects-dropdown").hide();
-				$(".nav-menu ul li a:contains('Projects')").removeClass("selected");
+				$("#projects-dropdown").fadeOut("fast");
+				$(".nav-menu ul li a:contains('Services')").removeClass("selected");
 			}
 		});
 	});

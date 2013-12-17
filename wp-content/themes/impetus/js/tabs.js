@@ -30,13 +30,19 @@
 			tabName = selectedTab.attr("data-name");
 		selectedTab.addClass("selected");
 		if(window.currentPage === "Volunteer"){
-			$("option.ASpire, option.InterAct, option.BetterFutures, option.NeighbourhoodCareScheme").hide();
-			$("option." + tabName).show();
+			var vacancies = $("option.ASpire, option.InterAct, option.BetterFutures, option.NeighbourhoodCareScheme");
+			vacancies.hide();
+			$("option." + tabName.split(" ").join("")).show();
 		}
 		if(window.location.href.indexOf("get-support") !== -1){
 			$("input[name='subject']").val("Get Support - " + tabName);
 		} else if(window.location.href.indexOf("volunteer") !== -1){
 			$("input[name='subject']").val("Volunteer - " + tabName);
+		}
+		if(tabName === "Impetus" || tabName === "Lay Assessors"){
+			$('.tab-bottom').hide();
+		} else {
+			$('.tab-bottom').show();
 		}
 		var email;
 		switch(tabName){
@@ -53,7 +59,7 @@
 				email = "ncs@bh-impetus.org";
 				break;
 			default:
-				email = "info@bh-icas.org";
+				email = "info@bh-impetus.org";
 				break;
 		}
 

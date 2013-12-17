@@ -61,7 +61,7 @@ get_header(); ?>
 						Download Application Pack
 						<img class="icon" src="<?php bloginfo( "stylesheet_directory" ); ?>/img/download.png" />
 					</a>
-					<p>You can also request an Application Packs by telephone; please leave a message on 01273 229381 stating clearly your name, contact number and address.</p>
+					<p><?php echo get_post_meta($post->ID, '_job_footer', true); ?></p>
 				<?php } ?>
 			</div>
 		</div>
@@ -80,7 +80,7 @@ get_header(); ?>
 <div class="tab-bottom">
 	<div class="wrapper">
 		<div class="tab-bottom-left">
-			<h3>Looking for unpaid volunteer work?</h3>
+			<h3>Looking for volunteer opportunities?</h3>
 			<a href="<?php echo get_permalink_from_page_name("Volunteer"); ?>" class="call-to-action no-change">
 				<span>View available volunteer positions</span>
 				<?php echo get_right_arrow_HTML(); ?>

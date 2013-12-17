@@ -14,7 +14,6 @@ if ( post_password_required() )
                     number_format_i18n( get_comments_number() ) );
             ?>
         </h2>
-
         <ol class="comment-list">
             <?php
                 wp_list_comments( array(
@@ -41,7 +40,6 @@ if ( post_password_required() )
         <?php endif; ?>
 
     <?php endif; // have_comments() ?>
-
     <?php
 
     comment_form();

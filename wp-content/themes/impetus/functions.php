@@ -113,23 +113,23 @@ function create_volunteer_taxonomies(){
 
 function projects_post_type() {
 	$labels = array(
-		'name'               => _x( 'Projects', 'post type general name' ),
-		'singular_name'      => _x( 'Project', 'post type singular name' ),
-		'add_new'            => _x( 'Add New', 'book' ),
-		'add_new_item'       => __( 'Add New Project' ),
-		'edit_item'          => __( 'Edit Project' ),
-		'new_item'           => __( 'New Project' ),
-		'all_items'          => __( 'All Projects' ),
-		'view_item'          => __( 'View Projects' ),
-		'search_items'       => __( 'Search Projects' ),
-		'not_found'          => __( 'No projects found' ),
-		'not_found_in_trash' => __( 'No projects found in the Trash' ),
+		'name'               => _x( 'Services', 'post type general name' ),
+		'singular_name'      => _x( 'Service', 'post type singular name' ),
+		'add_new'            => _x( 'Add New', 'Service' ),
+		'add_new_item'       => __( 'Add New Service' ),
+		'edit_item'          => __( 'Edit Service' ),
+		'new_item'           => __( 'New Service' ),
+		'all_items'          => __( 'All Services' ),
+		'view_item'          => __( 'View Services' ),
+		'search_items'       => __( 'Search Services' ),
+		'not_found'          => __( 'No services found' ),
+		'not_found_in_trash' => __( 'No services found in the Trash' ),
 		'parent_item_colon'  => '',
-		'menu_name'          => 'Projects'
+		'menu_name'          => 'Services'
 	);
 	$args = array(
 		'labels'        => $labels,
-		'description'   => 'Holds our projects and project specific data',
+		'description'   => 'Holds our services and service specific data',
 		'public'        => true,
 		'menu_position' => 5,
 		'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ),
@@ -736,6 +736,10 @@ function myplugin_inner_custom_box($post){
 	$job_status = get_post_meta($post->ID, '_job_status', true);
 	$job_closing_date = get_post_meta($post->ID, '_job_closing_date', true);
 	$job_interviews = get_post_meta($post->ID, '_job_interviews', true);
+	$job_footer = get_post_meta($post->ID, '_job_footer', true);
+	if(!$job_footer){
+		$job_footer = "You can also request an Application Pack by telephone; please leave a message on 01273 229381 stating clearly your name, contact number and address.";
+	}
 
 	echo '
 		<p>
@@ -757,6 +761,10 @@ function myplugin_inner_custom_box($post){
 		<p>
 			<label for="job_interviews">Interviews</label>
 			<textarea class="widefat" id="job_interviews" name="job_interviews">' . esc_attr($job_interviews) . '</textarea>
+		</p>
+		<p>
+			<label for="job_footer">Footer</label>
+			<textarea class="widefat" id="job_footer" name="job_footer">' . esc_attr($job_footer) . '</textarea>
 		</p>';
 }
 
@@ -790,12 +798,13 @@ function myplugin_save_postdata($post_id){
 	$job_status = sanitize_text_field( $_POST["job_status"] );
 	$job_closing_date = sanitize_text_field( $_POST["job_closing_date"] );
 	$job_interviews = sanitize_text_field( $_POST["job_interviews"] );
+	$job_footer = sanitize_text_field( $_POST["job_footer"] );
 
 	update_post_meta($post_id, "_job_hours", $job_hours);
 	update_post_meta($post_id, "_job_salary", $job_salary);
 	update_post_meta($post_id, "_job_status", $job_status);
 	update_post_meta($post_id, "_job_closing_date", $job_closing_date);
-	update_post_meta($post_id, "_job_interviews", $job_interviews);
+	update_post_meta($post_id, "_job_footer", $job_footer);
 }
 
 add_action("save_post", "myplugin_save_postdata");

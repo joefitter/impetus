@@ -1662,6 +1662,7 @@ function comment_form( $args = array(), $post_id = null ) {
 							<?php echo apply_filters( 'comment_form_logged_in', $args['logged_in_as'], $commenter, $user_identity ); ?>
 							<?php do_action( 'comment_form_logged_in_after', $commenter, $user_identity ); ?>
 						<?php else : ?>
+							<p class="login fr"><a href="<?php echo wp_login_url( get_permalink() ); ?>" title="Login">Login</a></p>
 							<div class="clear"></div>
 							<?php echo $args['comment_notes_before']; ?>
 							<?php
